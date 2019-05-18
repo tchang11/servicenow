@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="state" label="State" language="en" table="x_135500_yelp_restaurants">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <help/>
+            <hint/>
+            <label>State</label>
+            <language>en</language>
+            <name>x_135500_yelp_restaurants</name>
+            <plural>States</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-05-17 18:38:51</sys_created_on>
+            <sys_id>3cdd0460dbe9f3003b6a880948961941</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>State</sys_name>
+            <sys_package display_value="Yelp" source="x_135500_yelp">252c08acdba9f3003b6a8809489619f3</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Yelp">252c08acdba9f3003b6a8809489619f3</sys_scope>
+            <sys_update_name>sys_documentation_x_135500_yelp_restaurants_state_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-05-17 18:38:51</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

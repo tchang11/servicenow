@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="restaurants" max_length="40" name="x_135500_yelp_restaurants" type="collection">
+        <element label="Category" max_length="40" name="category" type="string"/>
+        <element label="City" max_length="40" name="city" type="string"/>
+        <element label="Name" mandatory="true" max_length="100" name="name" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Phone" max_length="40" name="phone" type="string"/>
+        <element label="Rating" max_length="15" name="rating" type="decimal"/>
+        <element label="State" max_length="40" name="state" type="string"/>
+        <element label="Street" max_length="255" name="street" type="string"/>
+        <element label="URL" max_length="225" name="url" type="url"/>
+        <element label="Zip" max_length="40" name="zip" type="string"/>
+    </element>
+</database>

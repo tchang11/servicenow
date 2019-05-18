@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>incident</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="incident">assignment_group=d726ec60db2df3003b6a880948961953^EQ<item display_table="sys_user_group" display_value="Yelp Search Team" endquery="false" field="assignment_group" goto="false" newquery="false" operator="=" or="false" value="d726ec60db2df3003b6a880948961953"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Trigger Yelp Search</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	// Add your code here
+	var search_location;
+	
+	search_location = current.location.street + ' ' + current.location.city + ' ' + current.location.state + ' ' + current.location.zip ;
+	gs.info('Eddie8 - search_location - ' + search_location);
+	
+	var r = new sn_ws.RESTMessageV2('Yelp Rest','get');
+	
+	r.setQueryParameter('location', search_location);
+	
+	var response = r.execute();
+	var responseBody = response.getBody();
+	
+	var obj = JSON.parse(responseBody);
+	
+	var myJSON = JSON.stringify(responseBody);
+
+	gs.info('Eddie9 - ' + myJSON);
+	
+	if (obj){
+		for (var i=0; i < obj.businesses.length; i++){
+			var gr = new GlideRecord('x_135500_yelp_restaurants');
+			gr.setValue('name',obj.businesses[i].name);
+			gr.setValue('street',obj.businesses[i].location.address1 + ' ' + obj.businesses[i].location.address2);
+			gr.setValue('city',obj.businesses[i].location.city);
+			gr.setValue('state',obj.businesses[i].location.state);
+			gr.setValue('zip',obj.businesses[i].location.zip_code);
+			gr.setValue('phone',obj.businesses[i].phone);
+			gr.setValue('rating',obj.businesses[i].rating);
+			gr.setValue('url',obj.businesses[i].url);
+			gr.setValue('category',obj.businesses[i].categories[0].title);
+			gr.insert();					
+		}
+
+		
+	
+	}
+	
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-17 20:26:39</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ce5660a0db2df3003b6a880948961992</sys_id>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_name>Trigger Yelp Search</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Yelp" source="x_135500_yelp">252c08acdba9f3003b6a8809489619f3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yelp">252c08acdba9f3003b6a8809489619f3</sys_scope>
+        <sys_update_name>sys_script_ce5660a0db2df3003b6a880948961992</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-17 22:07:55</sys_updated_on>
+        <template/>
+        <when>async</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=ce5660a0db2df3003b6a880948961992"/>
+</record_update>
